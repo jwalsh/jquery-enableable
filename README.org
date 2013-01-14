@@ -1,0 +1,161 @@
+* Summary
+
+  Allow a UI component (in particular form elements) to be marked as
+  something that could be enabled with explict user interaction.
+  Decouple the feature status from the page markup.
+
+  http://www.urbandictionary.com/define.php?term=enableable
+
+* Examples
+
+** JavaScript
+
+   #+begin_src javascript
+  $('.enab1').enableable();
+  $('.select1').enableable({enabled: true});
+  $('textarea #my-enable-ta')
+    .css('border', '1px solid #888')
+    .enableable(
+      {
+        locked: true,
+        display: 'opaque',
+        hint: 'Use widget',
+        debug: true
+      });
+
+   #+end_src
+
+** HTML
+
+   #+begin_src html
+  <div class="jq-enableable">
+    <h1>.jq-enable</h1>
+    <form>
+      <input type="text" name="text1"/>
+      <div class="enab1" data-enableable="Edit now...">
+        <h2>.enab1</h2>
+        <select name="select1">
+          <option/>
+          <option>option1</option>
+          <option>option2</option>
+        </select>
+        <div id="my-enable">
+          <h3>#my-enable</h3>
+          <textarea id="my-enable-ta">
+          </textarea>
+        </div>
+      </div>
+    </form>
+  </div>
+
+   #+end_src
+
+* Configuration
+
+- locked: false
+- enabled: false
+- autorun: true
+- display: disabled (disabled, hidden, opaque)
+- debug: false
+- hint: "Enable" > @data-enableable
+
+- enable-if-populated: TBD
+- clear-when-disabled | reset-on-disable
+
+* Tasks
+
+** TODO Design notes and examples
+
+   Should be sufficiently small that dependency management isn't
+   required.
+
+   Depends on jQuery since it requires UI component selection.
+
+   No templating since the UI components are so small.
+
+   No validation since this is a wrapper.
+
+   Build through grunt.
+
+   No JSDoc processing initially (given configuration pattern).
+
+** Nomenclature
+
+- http://xith.org/javadoc/jagatoo/org/jagatoo/datatypes/Enableable.html
+- http://en.wiktionary.org/wiki/disableable
+- http://en.wiktionary.org/wiki/disablable
+
+** TODO Research notes
+   SCHEDULED: <2013-01-11 Fri>
+
+   https://speakerdeck.com/addyosmani/building-decoupled-large-scale-applications-using-javascript-and-jquery
+
+** Wrapping classes
+
+** jQuery
+
+* Options
+
+- Create the enabler markup in page
+  http://joaquinnunez.cl/jquery-enable-disable-plugin/
+
+- Disable the form then bind click of option to enable
+  http://andreasnylin.com/blog/2011/09/jquery-disable-plugin/
+
+- Parent has hint with inputs as editables()
+  http://archive.plugins.jquery.com/project/jqueryeditable
+
+- A checked test on a "Enable Form" checkbox
+  http://archive.plugins.jquery.com/project/form-dependancies
+
+- .ui-state-disabled with jQuery UI
+  http://jqueryui.com/upgrade-guide/1.9/
+
+* Research
+
+  See related enable and disable widget notes in
+  http://en.wikipedia.org/wiki/GUI_widget .
+
+** Frameworks
+
+- AngularJS: not part of the core implementation
+- YUI: reasonable but not part of core stack.  See control-disabled
+  for http://developer.yahoo.com/yui/button/
+- Backbone: not model heavy; controller logic
+- jQuery UI doesn't have component for performing the task
+  http://jqueryui.com/upgrade-guide/1.9/
+
+** Plugins
+
+   Searched through the plugins directory to find something similar.
+
+- Validation http://docs.jquery.com/Plugins/Validation doesn't have a
+  lock or disable wrapper
+
+- ThemeRoller locked? or disabled? didn't have an
+
+- http://archive.plugins.jquery.com/projects/plugins/forms showed jqueryeditable
+
+- Backbone with a validation check that a field is not populated:
+  https://github.com/thedersen/backbone.validation
+
+** Name
+
+- jquery-enableable - none
+- jqueryenableable - none
+- jq-enableable - none
+- jquery-disabled - viable options
+  - http://andreasnylin.com/blog/2011/09/jquery-disable-plugin/
+  - http://joaquinnunez.cl/jquery-enable-disable-plugin/
+- jqueryeditable - convert to contenteditable
+  - http://www.appelsiini.net/projects/jeditable
+  - http://www.arashkarimzadeh.com/jquery/7-editable-jquery-plugin.html
+- jquery-editable - see above
+- jq-editable - contenteditable
+  - https://github.com/noodlehaus/jq-editable
+- jq-plugin-editable - rewrite to form element
+  - http://archive.plugins.jquery.com/project/Editable
+
+
+
+
